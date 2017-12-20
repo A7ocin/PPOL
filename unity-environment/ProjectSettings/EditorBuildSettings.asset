@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ML-Agents/Examples/DemoPPOL/Scenes/SimpleCollision.unity
+    guid: 33cd460fb9d10e54aa9bbb8b207fc9a3
+  - enabled: 0
     path: Assets/ML-Agents/Examples/DemoPPOL/Scenes/SanFranciscoHouse.unity
     guid: d8a26c2a14458e34ba3619462bc149b2
   - enabled: 0
