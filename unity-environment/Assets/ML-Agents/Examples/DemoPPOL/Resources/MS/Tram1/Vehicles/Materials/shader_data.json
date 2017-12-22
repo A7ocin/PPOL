@@ -1,0 +1,10 @@
+{
+   "Main shader" : {
+      "" : {
+         "ao_intensity" : "0.75",
+         "emissive_intensity" : "1",
+         "height_force" : "1",
+         "nbSamples" : "16"
+      }
+   }
+}
