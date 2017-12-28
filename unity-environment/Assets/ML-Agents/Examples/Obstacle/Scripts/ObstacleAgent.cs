@@ -59,16 +59,16 @@ public class ObstacleAgent : Agent {
         switch ((int)action[0])
         {
             case 0:
-                currentX -= 0.5f;
+                currentX -= 0.1f;
                 break;
             case 1:
-                currentX += 0.5f;
+                currentX += 0.1f;
                 break;
             case 2:
-                currentZ -= 0.5f;
+                currentZ -= 0.1f;
                 break;
             case 3:
-                currentZ += 0.5f;
+                currentZ += 0.1f;
                 break;
             default:
                 return;
@@ -95,13 +95,13 @@ public class ObstacleAgent : Agent {
             done = true;
             return;
         }
-        else if(currentX > 3 || currentX < -3 || currentZ < -8)
-        {
-            reward = -0.01f;
-        }
+        //else if(currentX > 3 || currentX < -3 || currentZ < -8)
+        //{
+        //    reward = -0.005f;
+        //}
         else
         {
-            reward = -0.005f;
+            reward = -(distance/10000);// -0.002f;
             return;
         }
     }

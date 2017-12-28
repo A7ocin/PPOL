@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ML-Agents/Examples/Obstacle/Scenes/ObstacleCurriculum.unity
+    guid: 2a5ea017973be6a499421fc7cf600a47
+  - enabled: 0
     path: Assets/ML-Agents/Examples/Obstacle/Scenes/Obstacle.unity
     guid: 4fbe5ddb96870c84aa163e41b5f693b5
   - enabled: 0

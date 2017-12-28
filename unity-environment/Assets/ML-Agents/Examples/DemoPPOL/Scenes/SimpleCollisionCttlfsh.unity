@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &5
@@ -1614,6 +1613,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59260072d54f6114b8fdb8968f80c023, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &208199537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  brain: {fileID: 1742985652}
 --- !u!1001 &209404052
 Prefab:
   m_ObjectHideFlags: 0
@@ -2665,6 +2676,28 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 23b96763d79579d45980a0b54c2d1734, type: 2}
   m_PrefabInternal: {fileID: 2118347767}
+--- !u!114 &305513901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  graphModel: {fileID: 4900000, guid: 2326be6eccbbe9d45842c05f3071a3df, type: 3}
+  graphScope: 
+  graphPlaceholders: []
+  BatchSizePlaceholderName: batch_size
+  StatePlacholderName: state
+  RecurrentInPlaceholderName: recurrent_in
+  RecurrentOutPlaceholderName: recurrent_out
+  ObservationPlaceholderName: []
+  ActionPlaceholderName: action
+  brain: {fileID: 1742985652}
 --- !u!4 &312664680 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 70753f3c948fe624386e9df0bc9ead84, type: 2}
@@ -4259,6 +4292,19 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: ded6bf993d1d9a54c8e480e9e46ac808, type: 2}
   m_PrefabInternal: {fileID: 871724821}
+--- !u!114 &450671143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  brain: {fileID: 0}
 --- !u!1 &453106361
 GameObject:
   m_ObjectHideFlags: 0
@@ -5968,8 +6014,8 @@ Transform:
   - {fileID: 560415112}
   - {fileID: 1538762735}
   - {fileID: 164056507}
-  - {fileID: 867672070}
   - {fileID: 1658124309}
+  - {fileID: 867672070}
   - {fileID: 823127193}
   - {fileID: 435514141}
   - {fileID: 395466185}
@@ -8502,6 +8548,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 849734411}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &850955673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  continuousPlayerActions: []
+  discretePlayerActions:
+  - key: 97
+    value: 0
+  - key: 100
+    value: 1
+  - key: 115
+    value: 2
+  - key: 119
+    value: 3
+  defaultAction: -1
+  brain: {fileID: 1742985652}
 --- !u!1001 &854416841
 Prefab:
   m_ObjectHideFlags: 0
@@ -16325,8 +16395,6 @@ MonoBehaviour:
   currentZ: 0
   targetX: 0
   targetZ: 0
-  otherX: 0
-  otherZ: 0
   text: {fileID: 1969256092}
   agent: {fileID: 1697210408}
   otherAgent: {fileID: 2097712982}
@@ -18300,18 +18368,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709997318}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1710877740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  brain: {fileID: 1742985652}
 --- !u!1001 &1716945232
 Prefab:
   m_ObjectHideFlags: 0
@@ -18764,7 +18820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainParameters:
-    stateSize: 6
+    stateSize: 4
     actionSize: 4
     memorySize: 0
     cameraResolutions: []
@@ -18775,13 +18831,13 @@ MonoBehaviour:
     - PositiveZ
     actionSpaceType: 0
     stateSpaceType: 1
-  brainType: 0
+  brainType: 3
   CoreBrains:
-  - {fileID: 1747825476}
-  - {fileID: 1874959549}
-  - {fileID: 1710877740}
-  - {fileID: 1921429618}
-  instanceID: 120248
+  - {fileID: 850955673}
+  - {fileID: 450671143}
+  - {fileID: 208199537}
+  - {fileID: 305513901}
+  instanceID: 20086
 --- !u!1001 &1745103159
 Prefab:
   m_ObjectHideFlags: 0
@@ -18844,30 +18900,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e92c2f1802b28d49b5201eb62230746, type: 3}
   m_IsPrefabParent: 0
---- !u!114 &1747825476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  continuousPlayerActions: []
-  discretePlayerActions:
-  - key: 97
-    value: 0
-  - key: 100
-    value: 1
-  - key: 115
-    value: 2
-  - key: 119
-    value: 3
-  defaultAction: -1
-  brain: {fileID: 1742985652}
 --- !u!1001 &1747845910
 Prefab:
   m_ObjectHideFlags: 0
@@ -20093,19 +20125,6 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: f8a5557095a3f954bae313f88afbf25e, type: 2}
   m_PrefabInternal: {fileID: 1129549894}
---- !u!114 &1874959549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  brain: {fileID: 0}
 --- !u!4 &1875546269 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 5316f1a286cd5ad449af45dfcee58307, type: 2}
@@ -20517,8 +20536,6 @@ MonoBehaviour:
   currentZ: 0
   targetX: 0
   targetZ: 0
-  otherX: 0
-  otherZ: 0
   text: {fileID: 806749942}
   agent: {fileID: 2097712982}
   otherAgent: {fileID: 1697210408}
@@ -20632,28 +20649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bdced46732b3a48a0e7e464812c83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1921429618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  graphModel: {fileID: 4900000, guid: 2326be6eccbbe9d45842c05f3071a3df, type: 3}
-  graphScope: 
-  graphPlaceholders: []
-  BatchSizePlaceholderName: batch_size
-  StatePlacholderName: state
-  RecurrentInPlaceholderName: recurrent_in
-  RecurrentOutPlaceholderName: recurrent_out
-  ObservationPlaceholderName: []
-  ActionPlaceholderName: action
-  brain: {fileID: 1742985652}
 --- !u!4 &1922733898 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e0e5c2103b2aa534baf54bc1c6f1f1a3, type: 3}
