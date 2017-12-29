@@ -30,13 +30,21 @@ public class ObstacleCurriculumAgent : Agent
     private GameObject goal;
 
     public float directionX, directionZ;
-    public string state = "OK";
-
     public int seed;
 
-    int solved = 0, failures = 0, obstacleHit = 0;
-    public float maxDistance = 25;
-    public bool isDone = false;
+    private int solved = 0, failures = 0, obstacleHit = 0;
+    private string state = "OK";
+    private bool isDone = false;
+    private float length = 14, width = 4;
+    private float step = 0.5f;
+
+    //Distances: http://changingminds.org/techniques/body/social_distance.htm
+    private float maxDistance = 25;
+    private float completionDistance = 2f;
+    private static float agentRadius = 1f;
+    private float socialZone = 3.5f + agentRadius;  //e.g. I'm in social zone if obstacleDistance <= socialZone
+    private float personalZone = 1.5f + agentRadius;
+    private float intimateZone = 0.5f + agentRadius;
 
     void Start()
     {
@@ -46,7 +54,7 @@ public class ObstacleCurriculumAgent : Agent
 
     float calculateReward(float distance, float obstacleDistance)
     {
-        if (distance < 2f) 
+        if (distance <= completionDistance) 
         {
             solved += 1;
             reward = 1f;
@@ -61,29 +69,35 @@ public class ObstacleCurriculumAgent : Agent
             isDone = true;
         }
 
-        else if (agentX > 14 || agentX < -14 || agentZ > 4 || agentZ < -4)
+        else if (Mathf.Abs(agentX) > length || Mathf.Abs(agentZ) > width)
         {
-            reward = -0.01f;
+            reward = -(step/50);
             state = "OUT";
         }
 
-        else if (obstacleDistance <= 2)
+        else if (obstacleDistance <= intimateZone)
         {
             obstacleHit += 1;
             reward = -1f;
             isDone = true;
-            state = "COLLIDED";
+            state = "INTIMATE ZONE";
         }
 
-        else if (obstacleDistance < 5)
+        else if (obstacleDistance < personalZone)
         {
-            reward = -0.01f;
-            state = "NEAR OBSTACLE";
+            reward = -(step / 50);
+            state = "PERSONAL ZONE";
+        }
+
+        else if (obstacleDistance < socialZone)
+        {
+            reward = -(step / 75);
+            state = "SOCIAL ZONE";
         }
 
         else
         {
-            reward = -0.005f;
+            reward = -(step/100);
             state = "OK";
         }
         return reward;
@@ -113,64 +127,57 @@ public class ObstacleCurriculumAgent : Agent
         switch ((int)action[0])
         {
             case 0:
-                agentX -= 0.5f;//= Mathf.SmoothDamp(agentX, agentX - directionX * 1.0f, ref velocity, 0.1f);
+                agentX -= step;
                 break;
             case 1:
-                agentX += 0.5f;//= Mathf.SmoothDamp(agentX, agentX + directionX * 1.0f, ref velocity, 0.1f);
+                agentX += step;
                 break;
             case 2:
-                agentZ -= 0.5f;//= Mathf.SmoothDamp(agentZ, agentZ - directionZ * 1.0f, ref velocity, 0.1f);
+                agentZ -= step;
                 break;
             case 3:
-                agentZ += 0.5f;//= Mathf.SmoothDamp(agentZ, agentZ + directionZ * 1.0f, ref velocity, 0.1f);
+                agentZ += step;
                 break;
             case 4:
-                agentX -= 0.25f;
-                agentZ += 0.25f;
+                agentX -= step / 2;
+                agentZ += step / 2;
                 break;
             case 5:
-                agentX += 0.25f;
-                agentZ += 0.25f;
+                agentX += step / 2;
+                agentZ += step / 2;
                 break;
             case 6:
-                agentX -= 0.25f;
-                agentZ -= 0.25f;
+                agentX -= step / 2;
+                agentZ -= step / 2;
                 break;
             case 7:
-                agentX += 0.25f;
-                agentZ -= 0.25f;
+                agentX += step / 2;
+                agentZ -= step / 2;
                 break;
             default:
                 return;
         }
-        //UnityEngine.Random.InitState(2000);
-        obstacleX += UnityEngine.Random.Range(-0.5f, 0.02f);
-        obstacleZ += UnityEngine.Random.Range(-0.5f, 0.5f);
+
+        obstacleX += UnityEngine.Random.Range(-step, step/2);
+        obstacleZ += UnityEngine.Random.Range(-step, step);
 
         agent.transform.position = new Vector3(agentX, 0, agentZ);
         obstacle.transform.position = new Vector3(obstacleX, 0, obstacleZ);
         goal.transform.position = new Vector3(goalX, 0, goalZ);
 
         float distance = Mathf.Sqrt(Mathf.Pow((goalX - agentX), 2) + Mathf.Pow((goalZ - agentZ), 2));
-        //float distance = Mathf.Abs(goalX - agentX);
         float obstacleDistance = Mathf.Sqrt(Mathf.Pow((obstacleX - agentX), 2) + Mathf.Pow((obstacleZ - agentZ), 2));
 
-        float tempReward = calculateReward(distance, obstacleDistance);
-        //if (!isDone) {
-        //    reward = tempReward / 10;
-        //}
-        //else
-        //{
-            reward = tempReward;
-        //}
+        reward = calculateReward(distance, obstacleDistance);
 
         Monitor.Log("Reward", reward, MonitorType.slider, agent.transform);
         Monitor.Log("Distance", distance/maxDistance, MonitorType.slider, agent.transform);
         Monitor.Log("Obstacle Distance", obstacleDistance/3, MonitorType.slider, agent.transform);
+        Monitor.Log("State", state, MonitorType.text, agent.transform);
 
         if (trainingText != null)
         {
-            trainingText.text = string.Format("D:{0} / OD:{1} / TR:{2} / R:{3} [{4};{5};{6}]", distance, obstacleDistance, tempReward, reward, solved, failures, obstacleHit);
+            trainingText.text = string.Format("D:{0} / OD:{1} / R:{2} [{3};{4};{5}]", distance, obstacleDistance, reward, solved, failures, obstacleHit);
         }
         if(cumulativeText != null)
         {
