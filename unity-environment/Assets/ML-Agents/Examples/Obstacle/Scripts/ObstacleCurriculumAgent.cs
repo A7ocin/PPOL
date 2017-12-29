@@ -61,7 +61,7 @@ public class ObstacleCurriculumAgent : Agent
             isDone = true;
         }
 
-        else if (agentX > goalX || agentX < -14 || agentZ > 4 || agentZ < -4)
+        else if (agentX > 14 || agentX < -14 || agentZ > 4 || agentZ < -4)
         {
             reward = -0.01f;
             state = "OUT";
@@ -75,7 +75,7 @@ public class ObstacleCurriculumAgent : Agent
             state = "COLLIDED";
         }
 
-        else if (obstacleDistance < 4)
+        else if (obstacleDistance < 5)
         {
             reward = -0.01f;
             state = "NEAR OBSTACLE";
@@ -124,12 +124,28 @@ public class ObstacleCurriculumAgent : Agent
             case 3:
                 agentZ += 0.5f;//= Mathf.SmoothDamp(agentZ, agentZ + directionZ * 1.0f, ref velocity, 0.1f);
                 break;
+            case 4:
+                agentX -= 0.25f;
+                agentZ += 0.25f;
+                break;
+            case 5:
+                agentX += 0.25f;
+                agentZ += 0.25f;
+                break;
+            case 6:
+                agentX -= 0.25f;
+                agentZ -= 0.25f;
+                break;
+            case 7:
+                agentX += 0.25f;
+                agentZ -= 0.25f;
+                break;
             default:
                 return;
         }
         //UnityEngine.Random.InitState(2000);
-        obstacleX += UnityEngine.Random.Range(-0.07f, 0.02f);
-        obstacleZ += UnityEngine.Random.Range(-0.07f, 0.07f);
+        obstacleX += UnityEngine.Random.Range(-0.5f, 0.02f);
+        obstacleZ += UnityEngine.Random.Range(-0.5f, 0.5f);
 
         agent.transform.position = new Vector3(agentX, 0, agentZ);
         obstacle.transform.position = new Vector3(obstacleX, 0, obstacleZ);
