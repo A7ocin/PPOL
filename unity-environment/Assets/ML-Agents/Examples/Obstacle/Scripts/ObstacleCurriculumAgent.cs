@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ObstacleCurriculumAgent : Agent
 {
@@ -10,10 +11,10 @@ public class ObstacleCurriculumAgent : Agent
     private float agentX;
     [SerializeField]
     private float agentZ;
-    [SerializeField]
-    private float obstacleX;
-    [SerializeField]
-    private float obstacleZ;
+    //[SerializeField]
+    //private float obstacleX;
+    //[SerializeField]
+    //private float obstacleZ;
     [SerializeField]
     private float goalX;
     [SerializeField]
@@ -28,6 +29,8 @@ public class ObstacleCurriculumAgent : Agent
     private GameObject[] obstacles;
     [SerializeField]
     private GameObject goal;
+    [SerializeField]
+    private GameObject area;
 
     public float directionX, directionZ;
     public int seed;
@@ -45,6 +48,8 @@ public class ObstacleCurriculumAgent : Agent
     private float socialZone = 3.5f + agentRadius;  //e.g. I'm in social zone if obstacleDistance <= socialZone
     private float personalZone = 1.5f + agentRadius;
     private float intimateZone = 0.5f + agentRadius;
+
+    private float previousDistance = 25;
 
     void Start()
     {
@@ -76,17 +81,17 @@ public class ObstacleCurriculumAgent : Agent
         {
             obstacleHit += 1;
             reward = -1f;
-            isDone = true;
+            //isDone = true;
             state = "INTIMATE ZONE";
         }
 
-        else if (obstacleDistance < personalZone)
+        else if (obstacleDistance <= personalZone)
         {
             reward = -(step / 50);
             state = "PERSONAL ZONE";
         }
 
-        else if (obstacleDistance < socialZone)
+        else if (obstacleDistance <= socialZone)
         {
             reward = -(step / 75);
             state = "SOCIAL ZONE";
@@ -98,11 +103,18 @@ public class ObstacleCurriculumAgent : Agent
             state = "OUT ";
         }
 
+        else if (distance <= previousDistance)
+        {
+            previousDistance = distance;
+            reward += step / 100;
+        }
+
         else
         {
             reward = -(step / 100);
             state = "OK";
         }
+
         return reward;
     }
 
@@ -164,19 +176,34 @@ public class ObstacleCurriculumAgent : Agent
                 return;
         }
 
-        float obstacleDistance = maxDistance;
+        float obstacleDistance = 0;
+        float[] tempObstacleDistances = new float[obstacles.Length];
 
         for(int i=0; i<obstacles.Length; i++)
         {
-            obstacleX += UnityEngine.Random.Range(-directionX * step, directionX * step / 2);
-            obstacleZ += UnityEngine.Random.Range(-directionZ * step, directionZ * step);
-            obstacles[i].transform.position = new Vector3(obstacleX, 0, obstacleZ);
-            float tempObstacleDistance = Mathf.Sqrt(Mathf.Pow((obstacleX - agentX), 2) + Mathf.Pow((obstacleZ - agentZ), 2));
-            if(tempObstacleDistance < obstacleDistance)
-            {
-                obstacleDistance = tempObstacleDistance;
-            }
+            //obstacleX += UnityEngine.Random.Range(-directionX * step, directionX * step / 2);
+            //obstacleZ += UnityEngine.Random.Range(-directionZ * step, directionZ * step);
+            //obstacles[i].transform.position = new Vector3(obstacleX, 0, obstacleZ);
+            obstacles[i].transform.position = new Vector3(
+                obstacles[i].transform.position.x + UnityEngine.Random.Range(-directionX * step, directionX * step / 2),
+                0,
+                obstacles[i].transform.position.z + UnityEngine.Random.Range(-directionZ * step, directionZ * step));
+            tempObstacleDistances[i] = Mathf.Sqrt(Mathf.Pow((obstacles[i].transform.position.x - agentX), 2) + Mathf.Pow((obstacles[i].transform.position.z - agentZ), 2));
+            //if(tempObstacleDistance < obstacleDistance)
+            //{
+            //    obstacleDistance = tempObstacleDistance;
+            //}
+            //if (tempObstacleDistances[i] <= personalZone)
+            //{
+            //    obstacleDistance = tempObstacleDistances[i];
+            //}
+            //else
+            //{
+            //    obstacleDistance += tempObstacleDistances[i];
+            //}
         }
+        obstacleDistance = tempObstacleDistances.Min();
+        //obstacleDistance = obstacleDistance / obstacles.Length;
 
         agent.transform.position = new Vector3(agentX, 0, agentZ);
         goal.transform.position = new Vector3(goalX, 0, goalZ);
@@ -211,6 +238,7 @@ public class ObstacleCurriculumAgent : Agent
 
     public override void AgentReset()
     {
+        float areaZ = area.transform.position.z;
         /**Invert direction**/
         //directionX = -directionX;
         //directionZ = -directionZ;
@@ -219,15 +247,23 @@ public class ObstacleCurriculumAgent : Agent
         spawnZone = directionX * Mathf.Abs(spawnZone);
 
         agentX = UnityEngine.Random.Range(-spawnZone, -directionX * length);
-        agentZ = UnityEngine.Random.Range(width, -width);
+        agentZ = areaZ + UnityEngine.Random.Range(width, -width);
 
-        obstacleX = UnityEngine.Random.Range(length/2, -length/2);
-        obstacleZ = UnityEngine.Random.Range(width, -width);
+        //obstacleX = UnityEngine.Random.Range(length/2, -length/2);
+        //obstacleZ = UnityEngine.Random.Range(width, -width);
+
+        for (int i = 0; i < obstacles.Length; i++)
+        {
+            obstacles[i].transform.position = new Vector3(
+                UnityEngine.Random.Range(length / 2, -length / 2),
+                0,
+                areaZ + UnityEngine.Random.Range(width, -width));
+        }
 
         //goalX = UnityEngine.Random.Range(10, 14);
         //goalZ = UnityEngine.Random.Range(4, -4);
-        
+
         goalX = spawnZone;
-        goalZ = 0;
+        goalZ = areaZ;
     }
 }

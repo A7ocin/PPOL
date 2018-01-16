@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ML-Agents/Examples/Obstacle/Scenes/Pedestrians.unity
+    guid: 26100cf7b6edad249887d41c001c2609
+  - enabled: 0
+    path: Assets/ML-Agents/Examples/Obstacle/Scenes/Crossing.unity
+    guid: c0ef584dc50d273409b6902b3194681f
+  - enabled: 0
     path: Assets/ML-Agents/Examples/Obstacle/Scenes/ObstacleCurriculum.unity
     guid: 2a5ea017973be6a499421fc7cf600a47
   - enabled: 0
