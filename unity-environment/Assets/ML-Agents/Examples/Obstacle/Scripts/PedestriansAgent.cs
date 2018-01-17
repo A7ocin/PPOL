@@ -34,12 +34,13 @@ public class PedestriansAgent : Agent
 
     public float directionX, directionZ;
     public int seed;
+    public bool AgentVsAgent;
 
     private int solved = 0, failures = 0, obstacleHit = 0;
     private string state = "OK";
     private bool isDone = false;
     private float length = 14, width = 4, spawnZone = 10;
-    private float step = 0.5f;
+    private float step = 0.1f;
 
     //Distances: http://changingminds.org/techniques/body/social_distance.htm
     private float maxDistance = 25;
@@ -184,10 +185,13 @@ public class PedestriansAgent : Agent
             //obstacleX += UnityEngine.Random.Range(-directionX * step, directionX * step / 2);
             //obstacleZ += UnityEngine.Random.Range(-directionZ * step, directionZ * step);
             //obstacles[i].transform.position = new Vector3(obstacleX, 0, obstacleZ);
-            obstacles[i].transform.position = new Vector3(
-                obstacles[i].transform.position.x + UnityEngine.Random.Range(-directionX * step, directionX * step / 2),
-                0,
-                obstacles[i].transform.position.z + UnityEngine.Random.Range(-directionZ * step, directionZ * step));
+            if (!AgentVsAgent)
+            {
+                obstacles[i].transform.position = new Vector3(
+                    obstacles[i].transform.position.x + UnityEngine.Random.Range(-directionX * step, directionX * step / 2),
+                    0,
+                    obstacles[i].transform.position.z + UnityEngine.Random.Range(-directionZ * step, directionZ * step));
+            }
             tempObstacleDistances[i] = Mathf.Sqrt(Mathf.Pow((obstacles[i].transform.position.x - agentX), 2) + Mathf.Pow((obstacles[i].transform.position.z - agentZ), 2));
             //if(tempObstacleDistance < obstacleDistance)
             //{
@@ -252,12 +256,15 @@ public class PedestriansAgent : Agent
         //obstacleX = UnityEngine.Random.Range(length/2, -length/2);
         //obstacleZ = UnityEngine.Random.Range(width, -width);
 
-        for (int i = 0; i < obstacles.Length; i++)
+        if (!AgentVsAgent)
         {
-            obstacles[i].transform.position = new Vector3(
-                UnityEngine.Random.Range(directionX*length / 2, 0),//-length / 2),
-                0,
-                areaZ + UnityEngine.Random.Range(width, -width));
+            for (int i = 0; i < obstacles.Length; i++)
+            {
+                obstacles[i].transform.position = new Vector3(
+                    UnityEngine.Random.Range(directionX * length / 2, 0),//-length / 2),
+                    0,
+                    areaZ + UnityEngine.Random.Range(width, -width));
+            }
         }
 
         //goalX = UnityEngine.Random.Range(10, 14);
