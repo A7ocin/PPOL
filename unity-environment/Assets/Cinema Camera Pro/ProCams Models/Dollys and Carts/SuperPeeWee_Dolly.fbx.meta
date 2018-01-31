@@ -1,0 +1,128 @@
+fileFormatVersion: 2
+guid: f86b868f221c004459376576cfb9580e
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Crane_Arm_1
+    100002: Crane_Arm_2
+    100004: Crane_Arm_3
+    100006: Crane_Arm_4
+    100008: Crane_Rack
+    100010: Dolly_Body
+    100012: FL_Pivot
+    100014: FL_Rotator
+    100016: FL_Wheel
+    100018: FR__Wheel
+    100020: FR_Pivot
+    100022: FR_Rotator
+    100024: joint15
+    100026: joint17
+    100028: joint19
+    100030: joint20
+    100032: joint21
+    100034: joint26
+    100036: joint27
+    100038: joint28
+    100040: joint29
+    100042: L_Seat
+    100044: R_Seat
+    100046: RL_Pivot
+    100048: RL_Rotator
+    100050: RL_Wheel
+    100052: RR_Pivot
+    100054: RR_Rotator
+    100056: RR_Wheel
+    100058: //RootNode
+    100060: SuperPeeWeeIVDolly
+    400000: Crane_Arm_1
+    400002: Crane_Arm_2
+    400004: Crane_Arm_3
+    400006: Crane_Arm_4
+    400008: Crane_Rack
+    400010: Dolly_Body
+    400012: FL_Pivot
+    400014: FL_Rotator
+    400016: FL_Wheel
+    400018: FR__Wheel
+    400020: FR_Pivot
+    400022: FR_Rotator
+    400024: joint15
+    400026: joint17
+    400028: joint19
+    400030: joint20
+    400032: joint21
+    400034: joint26
+    400036: joint27
+    400038: joint28
+    400040: joint29
+    400042: L_Seat
+    400044: R_Seat
+    400046: RL_Pivot
+    400048: RL_Rotator
+    400050: RL_Wheel
+    400052: RR_Pivot
+    400054: RR_Rotator
+    400056: RR_Wheel
+    400058: //RootNode
+    400060: SuperPeeWeeIVDolly
+    4300000: SuperPeeWeeIVDolly
+    9500000: //RootNode
+    13700000: SuperPeeWeeIVDolly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

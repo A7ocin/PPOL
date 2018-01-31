@@ -34,7 +34,7 @@ Shader "Hidden/Dof/DX11Dof"
 	float3 _Screen;
 	float _SpawnHeuristic;
 
-	sampler2D_float _CameraDepthTexture;
+	sampler2D _CameraDepthTexture;
 	sampler2D _BlurredColor;
 	sampler2D _MainTex;
 	sampler2D _FgCocMask;
@@ -137,7 +137,7 @@ SubShader
 
 Pass
 {
-	ZWrite Off ZTest Always Cull Off
+	ZWrite Off ZTest Always Cull Off Fog { Mode Off }
 
 	CGPROGRAM
 
@@ -175,7 +175,7 @@ Pass
 
 	AppendStructuredBuffer<appendStruct> pointBufferOutput : register(u1);
 
-	float4 frag (v2f i) : SV_Target
+	float4 frag (v2f i) : COLOR0
 	{
 		float4 c = tex2D (_MainTex, i.uv_flip);
 		float lumc = Luminance (c.rgb);
@@ -204,7 +204,7 @@ Pass
 
 Pass {
 
-	ZWrite Off ZTest Always Cull Off
+	ZWrite Off ZTest Always Cull Off Fog { Mode Off }
 	Blend One One, One One
 	ColorMask RGBA
 
@@ -217,7 +217,7 @@ Pass {
 
 	#include "UnityCG.cginc"
 
-	fixed4 frag (gs_out i) : SV_Target
+	fixed4 frag (gs_out i) : COLOR0
 	{
 		float2 uv = (i.uv.xy) * i.misc.xy + (float2(1,1)-i.misc.xy) * 0.5;	// smooth uv scale
 		return float4(i.color.rgb, 1) * float4(tex2D(_MainTex, uv.xy).rgb, i.uv.z) * clampBorderColor (uv);
@@ -230,7 +230,7 @@ Pass {
 
 Pass {
 
-	ZWrite Off ZTest Always Cull Off
+	ZWrite Off ZTest Always Cull Off Fog { Mode Off }
 	BlendOp Add, Add
 	Blend DstAlpha One, Zero One
 	ColorMask RGBA
@@ -244,7 +244,7 @@ Pass {
 
 	#include "UnityCG.cginc"
 
-	fixed4 frag (gs_out i) : SV_Target
+	fixed4 frag (gs_out i) : COLOR0
 	{
 		float2 uv = (i.uv.xy) * i.misc.xy + (float2(1,1)-i.misc.xy) * 0.5;	// smooth uv scale
 		return float4(i.color.rgb, 1) * float4(tex2D(_MainTex, uv.xy).rgb, i.uv.z) * clampBorderColor (uv);

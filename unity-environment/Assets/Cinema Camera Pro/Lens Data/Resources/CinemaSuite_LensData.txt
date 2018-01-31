@@ -1,0 +1,167 @@
+# Data sheet for real world lens
+# Comments start with '#'
+# 'Name' starts a new class of film format aperture
+# 'FocalLength' = Lens Kit, NodalPt, RealHFoV, UnityVFoV
+# 'Lens Kit' specifies the lens used for the FocalLength measurements that follow it
+# 'RealHFoV' is real horizontal field of view from the Film Plane
+# 'UnityVFoV' is Unity's vertical field of view from the Nodal Point
+
+Name=35mm Full Aperture (1.33:1)
+Aspect=4:3
+ScreenSize=DI,1024
+ScreenSize=2x DI,2048
+ScreenSize=4x DI,4096
+FocalLength=Cooke S4/i - T2,12mm,4.980,76.539,78.630
+FocalLength=Cooke S4/i - T2,14mm,5.200,69.893,66.830
+FocalLength=Cooke S4/i - T2,16mm,5.545,65.785,62.580
+FocalLength=Cooke S4/i - T2,18mm,4.507,62.766,56.650
+FocalLength=Cooke S4/i - T2,21mm,4.310,55.693,48.940
+FocalLength=Cooke S4/i - T2,25mm,3.912,48.720,41.760
+FocalLength=Cooke S4/i - T2,27mm,4.056,45.704,38.607
+FocalLength=Cooke S4/i - T2,32mm,4.173,39.851,33.200
+FocalLength=Cooke S4/i - T2,35mm,3.834,36.488,29.838
+FocalLength=Cooke S4/i - T2,40mm,3.517,32.872,26.481
+FocalLength=Cooke S4/i - T2,50mm,2.847,26.871,21.150
+FocalLength=Cooke S4/i - T2,65mm,3.052,20.901,16.300
+FocalLength=Cooke S4/i - T2,75mm,3.263,18.253,14.170
+FocalLength=Cooke S4/i - T2,100mm,2.361,13.819,10.560
+FocalLength=Cooke S4/i - T2,135mm,5.947,10.085,7.799
+FocalLength=Cooke S4/i - T2,150mm,2.923,9.053,6.879
+FocalLength=Cooke S4/i - T2,180mm,4.803,7.584,5.799
+
+
+Name=35mm Full Aperture (1.37:1)
+Aspect=1.37:1
+ScreenSize=DI,1024
+ScreenSize=2x DI,2048
+ScreenSize=4x DI,4096
+FocalLength=Cooke S4/i - T2,12mm,4.980,70.410,70.890
+FocalLength=Cooke S4/i - T2,14mm,5.200,63.930,59.590
+FocalLength=Cooke S4/i - T2,16mm,5.545,59.735,55.360
+FocalLength=Cooke S4/i - T2,18mm,4.507,57.033,50.000
+FocalLength=Cooke S4/i - T2,21mm,4.310,49.950,42.600
+FocalLength=Cooke S4/i - T2,25mm,3.912,44.424,37.000
+FocalLength=Cooke S4/i - T2,27mm,4.056,40.992,33.600
+FocalLength=Cooke S4/i - T2,32mm,4.173,36.116,29.210
+FocalLength=Cooke S4/i - T2,35mm,3.834,32.618,25.880
+FocalLength=Cooke S4/i - T2,40mm,3.517,29.417,23.000
+FocalLength=Cooke S4/i - T2,50mm,2.847,23.994,18.340
+FocalLength=Cooke S4/i - T2,65mm,3.052,18.553,14.060
+FocalLength=Cooke S4/i - T2,75mm,3.263,16.230,12.240
+FocalLength=Cooke S4/i - T2,100mm,2.361,12.287,9.120
+FocalLength=Cooke S4/i - T2,135mm,5.947,8.941,6.720
+FocalLength=Cooke S4/i - T2,150mm,2.923,8.032,5.930
+FocalLength=Cooke S4/i - T2,180mm,4.803,6.710,4.990
+
+
+Name=35mm 16:9 Aperture (1.78:1)
+Aspect=16:9
+ScreenSize=DI,1024
+ScreenSize=2x DI,2048
+ScreenSize=4x DI,4096
+FocalLength=Cooke S4/i - T2,12mm,4.980,74.952,61.630
+FocalLength=Cooke S4/i - T2,14mm,5.200,67.432,50.600
+FocalLength=Cooke S4/i - T2,16mm,5.545,62.960,46.700
+FocalLength=Cooke S4/i - T2,18mm,4.507,60.370,42.150
+FocalLength=Cooke S4/i - T2,21mm,4.310,53.130,35.790
+FocalLength=Cooke S4/i - T2,25mm,3.912,46.991,30.730
+FocalLength=Cooke S4/i - T2,27mm,4.056,44.072,28.310
+FocalLength=Cooke S4/i - T2,32mm,4.173,38.474,24.280
+FocalLength=Cooke S4/i - T2,35mm,3.834,35.143,21.730
+FocalLength=Cooke S4/i - T2,40mm,3.517,31.550,19.180
+FocalLength=Cooke S4/i - T2,50mm,2.847,25.815,15.300
+FocalLength=Cooke S4/i - T2,65mm,3.052,20.223,11.860
+FocalLength=Cooke S4/i - T2,75mm,3.263,17.580,10.260
+FocalLength=Cooke S4/i - T2,100mm,2.361,13.309,7.640
+FocalLength=Cooke S4/i - T2,135mm,5.947,9.695,5.630
+FocalLength=Cooke S4/i - T2,150mm,2.923,8.721,4.970
+FocalLength=Cooke S4/i - T2,180mm,4.803,7.322,4.200
+
+
+Name=35mm Academy Aperture (1.85:1)
+Aspect=1.85:1
+ScreenSize=DI,1024
+ScreenSize=2x DI,2048
+ScreenSize=4x DI,4096
+FocalLength=Cooke S4/i - T2,12mm,4.980,74.952,59.680
+FocalLength=Cooke S4/i - T2,14mm,5.200,60.961,43.700
+FocalLength=Cooke S4/i - T2,16mm,5.545,56.242,39.810
+FocalLength=Cooke S4/i - T2,18mm,4.507,53.891,35.910
+FocalLength=Cooke S4/i - T2,21mm,4.310,47.116,30.310
+FocalLength=Cooke S4/i - T2,25mm,3.912,41.391,25.860
+FocalLength=Cooke S4/i - T2,27mm,4.056,38.702,23.780
+FocalLength=Cooke S4/i - T2,32mm,4.173,33.836,20.460
+FocalLength=Cooke S4/i - T2,35mm,3.834,30.851,18.280
+FocalLength=Cooke S4/i - T2,40mm,3.517,27.623,16.110
+FocalLength=Cooke S4/i - T2,50mm,2.847,22.620,12.870
+FocalLength=Cooke S4/i - T2,65mm,3.052,17.684,9.970
+FocalLength=Cooke S4/i - T2,75mm,3.263,15.294,8.580
+FocalLength=Cooke S4/i - T2,100mm,2.361,11.618,6.410
+FocalLength=Cooke S4/i - T2,135mm,5.947,8.467,4.725
+FocalLength=Cooke S4/i - T2,150mm,2.923,7.628,4.182
+FocalLength=Cooke S4/i - T2,180mm,4.803,6.403,3.532
+
+
+Name=35mm Anamorphic Aperture (2.40:1)
+Aspect=2.40:1
+ScreenSize=DI,1024
+ScreenSize=2x DI,2048
+ScreenSize=4x DI,4096
+FocalLength=Cooke S4/i - T2,12mm,4.980,74.952,47.660
+FocalLength=Cooke S4/i - T2,14mm,5.200,67.432,38.580
+FocalLength=Cooke S4/i - T2,16mm,5.545,62.960,35.470
+FocalLength=Cooke S4/i - T2,18mm,4.507,60.370,31.880
+FocalLength=Cooke S4/i - T2,21mm,4.310,53.130,26.910
+FocalLength=Cooke S4/i - T2,25mm,3.912,46.991,23.000
+FocalLength=Cooke S4/i - T2,27mm,4.056,44.072,21.170
+FocalLength=Cooke S4/i - T2,32mm,4.173,38.474,18.120
+FocalLength=Cooke S4/i - T2,35mm,3.834,35.143,16.200
+FocalLength=Cooke S4/i - T2,40mm,3.517,31.550,14.270
+FocalLength=Cooke S4/i - T2,50mm,2.847,25.815,11.370
+FocalLength=Cooke S4/i - T2,65mm,3.052,20.223,8.810
+FocalLength=Cooke S4/i - T2,75mm,3.263,17.580,7.611
+FocalLength=Cooke S4/i - T2,100mm,2.361,13.309,5.660
+FocalLength=Cooke S4/i - T2,135mm,5.947,9.695,4.170
+FocalLength=Cooke S4/i - T2,150mm,2.923,8.721,3.685
+FocalLength=Cooke S4/i - T2,180mm,4.803,7.322,3.112
+
+
+Name=aps-s Canon 1200d (3:2)
+Aspect=3:2
+ScreenSize=DI,1024
+ScreenSize=2x DI,2048
+ScreenSize=4x DI,4096
+FocalLength=Canon efs,12mm,4.980,85.8,63.7
+FocalLength=Canon efs,14mm,5.200,77.1,56.0
+FocalLength=Canon efs,16mm,5.545,69.7,49.9
+FocalLength=Canon efs,18mm,4.507,63.3,45.0
+FocalLength=Canon efs,25mm,3.912,48.1,33.2
+FocalLength=Canon efs,35mm,3.834,35.3,24.0
+FocalLength=Canon efs,40mm,3.517,31.2,21.1
+FocalLength=Canon efs,50mm,2.847,25.1,16.9
+FocalLength=Canon efs,75mm,3.263,16.9,11.3
+FocalLength=Canon efs,100mm,2.361,12.7,8.5
+FocalLength=Canon efs,135mm,5.947,9.4,6.3
+FocalLength=Canon efs,150mm,2.923,8.5,5.7
+FocalLength=Canon efs,180mm,4.803,7.1,4.7
+
+Name=aps-c Canon 1200d (16:9)
+Aspect=16:9
+ScreenSize=DI,1024
+ScreenSize=2x DI,2048
+ScreenSize=4x DI,4096
+FocalLength=Canon efs,12mm,4.980,85.8,63.7
+FocalLength=Canon efs,14mm,5.200,77.1,56.0
+FocalLength=Canon efs,16mm,5.545,69.7,49.9
+FocalLength=Canon efs,18mm,4.507,63.3,45.0
+FocalLength=Canon efs,25mm,3.912,48.1,33.2
+FocalLength=Canon efs,35mm,3.834,35.3,24.0
+FocalLength=Canon efs,40mm,3.517,31.2,21.1
+FocalLength=Canon efs,50mm,2.847,25.1,16.9
+FocalLength=Canon efs,75mm,3.263,16.9,11.3
+FocalLength=Canon efs,100mm,2.361,12.7,8.5
+FocalLength=Canon efs,135mm,5.947,9.4,6.3
+FocalLength=Canon efs,150mm,2.923,8.5,5.7
+FocalLength=Canon efs,180mm,4.803,7.1,4.7
+
+

@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: f6acdb5bcbb728a41af7f5cb735b0679
+timeCreated: 1512301863
+licenseType: Store
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 0
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    WindowsStoreApps:
+      enabled: 1
+      settings:
+        CPU: ARM
+        SDK: UWP
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

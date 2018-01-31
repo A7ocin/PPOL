@@ -26,28 +26,29 @@ public class PedestriansAgent : Agent
     [SerializeField]
     private GameObject agent;
     [SerializeField]
-    private GameObject[] obstacles;
+    public GameObject[] obstacles;
     [SerializeField]
     private GameObject goal;
     [SerializeField]
     private GameObject area;
+    [SerializeField]
+    private bool showMonitor = true;
 
     public float directionX, directionZ;
     public int seed;
-    public bool AgentVsAgent;
 
     private int solved = 0, failures = 0, obstacleHit = 0;
     private string state = "OK";
     private bool isDone = false;
     private float length = 14, width = 4, spawnZone = 10;
-    private float step = 0.1f;
+    private float step = 0.05f;
 
     //Distances: http://changingminds.org/techniques/body/social_distance.htm
-    private float maxDistance = 25;
-    private float completionDistance = 2f;
-    private static float agentRadius = 1f;
-    private float socialZone = 3.5f + agentRadius;  //e.g. I'm in social zone if obstacleDistance <= socialZone
-    private float personalZone = 1.5f + agentRadius;
+    private float maxDistance = 35;
+    private float completionDistance = 3f;
+    private static float agentRadius = 0f;
+    private float socialZone = 2f + agentRadius;  //e.g. I'm in social zone if obstacleDistance <= socialZone
+    private float personalZone = 1f + agentRadius;
     private float intimateZone = 0.5f + agentRadius;
 
     private float previousDistance = 25;
@@ -61,7 +62,7 @@ public class PedestriansAgent : Agent
         //spawnZone = directionX * spawnZone;
     }
 
-    float calculateReward(float distance, float obstacleDistance)
+    float calculateReward(float distance, float obstacleDistance, float numObstacles)
     {
         if (distance <= completionDistance) 
         {
@@ -88,19 +89,19 @@ public class PedestriansAgent : Agent
 
         else if (obstacleDistance <= personalZone)
         {
-            reward = -(step / 50);
+            reward = -(step / 50);// / numObstacles;
             state = "PERSONAL ZONE";
         }
 
         else if (obstacleDistance <= socialZone)
         {
-            reward = -(step / 75);
+            reward = -(step / 75);// / numObstacles;
             state = "SOCIAL ZONE";
         }
         
         else if (Mathf.Abs(agentX) > length || Mathf.Abs(agentZ) > width)
         {
-            reward = -(step / 50);
+            reward = -(step / 50);// / numObstacles;
             state = "OUT ";
         }
 
@@ -112,11 +113,17 @@ public class PedestriansAgent : Agent
 
         else
         {
+            previousDistance = distance;
             reward = -(step / 100);
             state = "OK";
         }
 
         return reward;
+    }
+
+    public void setObstacle(GameObject chosen)
+    {
+        obstacles[0] = chosen;
     }
 
     public override List<float> CollectState()
@@ -143,35 +150,47 @@ public class PedestriansAgent : Agent
 
     public override void AgentStep(float[] action)
     {
+        //GameObject target = new GameObject();
+        //Vector3 velocity = Vector3.zero;
         switch ((int)action[0])
         {
-            case 0:
-                agentX -= directionX * step;
+            case 0: //BACKWARDS
+                //agentX -= directionX * step;
                 break;
-            case 1:
+            case 1: //FORWARD
                 agentX += directionX * step;
+                //transform.GetChild(0).LookAt(target.transform);
+                //target.transform.position = Vector3.SmoothDamp(transform.GetChild(0).position, transform.GetChild(0).position + new Vector3(directionX * 5, 0, 0), ref velocity, 0.3f);
                 break;
-            case 2:
+            case 2: //LEFT
                 agentZ -= directionZ * step;
+                //transform.GetChild(0).LookAt(target.transform);
+                //target.transform.position = Vector3.SmoothDamp(transform.GetChild(0).position, transform.GetChild(0).position + new Vector3(directionX * 5, 0, directionZ*5), ref velocity, 0.3f);
                 break;
-            case 3:
+            case 3: //RIGHT
                 agentZ += directionZ * step;
+                //transform.GetChild(0).LookAt(target.transform);
+                //target.transform.position = Vector3.SmoothDamp(transform.GetChild(0).position, transform.GetChild(0).position + new Vector3(directionX * 5, 0, -directionZ*5), ref velocity, 0.3f);
                 break;
-            case 4:
-                agentX -= directionX * step / 2;
-                agentZ += directionZ * step / 2;
+            case 4: //BACKWARDS + LEFT
+                //agentX -= directionX * step / 2;
+                //agentZ += directionZ * step / 2;
                 break;
-            case 5:
+            case 5: //FORWARD LEFT
                 agentX += directionX * step / 2;
                 agentZ += directionZ * step / 2;
+                //transform.GetChild(0).LookAt(target.transform);
+                //target.transform.position = Vector3.SmoothDamp(transform.GetChild(0).position, transform.GetChild(0).position + new Vector3(directionX * 5, 0, directionZ*3), ref velocity, 0.3f);
                 break;
-            case 6:
-                agentX -= directionX * step / 2;
-                agentZ -= directionZ * step / 2;
+            case 6: //BACKWARDS RIGHT
+                //agentX -= directionX * step / 2;
+                //agentZ -= directionZ * step / 2;
                 break;
-            case 7:
+            case 7: //FORWARD RIGHT
                 agentX += directionX * step / 2;
                 agentZ -= directionZ * step / 2;
+                //transform.GetChild(0).LookAt(target.transform);
+                //target.transform.position = Vector3.SmoothDamp(transform.GetChild(0).position, transform.GetChild(0).position + new Vector3(directionX * 5, 0, -directionZ*3), ref velocity, 0.3f);
                 break;
             default:
                 return;
@@ -185,14 +204,23 @@ public class PedestriansAgent : Agent
             //obstacleX += UnityEngine.Random.Range(-directionX * step, directionX * step / 2);
             //obstacleZ += UnityEngine.Random.Range(-directionZ * step, directionZ * step);
             //obstacles[i].transform.position = new Vector3(obstacleX, 0, obstacleZ);
-            if (!AgentVsAgent)
+            if (obstacles[i].tag != "agent")
             {
-                obstacles[i].transform.position = new Vector3(
-                    obstacles[i].transform.position.x + UnityEngine.Random.Range(-directionX * step, directionX * step / 2),
-                    0,
-                    obstacles[i].transform.position.z + UnityEngine.Random.Range(-directionZ * step, directionZ * step));
+                float speed = step;// / obstacles.Length;
+                obstacles[i].transform.position = new Vector3(obstacles[i].transform.position.x+(-directionX*speed), 0, obstacles[i].transform.position.z);
+                    //obstacles[i].transform.position.x + UnityEngine.Random.Range(-directionX * speed, directionX * speed / 2),
+                    //0,
+                    //obstacles[i].transform.position.z + UnityEngine.Random.Range(-directionZ * speed, directionZ * speed));
             }
-            tempObstacleDistances[i] = Mathf.Sqrt(Mathf.Pow((obstacles[i].transform.position.x - agentX), 2) + Mathf.Pow((obstacles[i].transform.position.z - agentZ), 2));
+
+            if (goal.transform.position.x - obstacles[i].transform.position.x < goal.transform.position.x - agentX)
+            {
+                tempObstacleDistances[i] = Mathf.Sqrt(Mathf.Pow((obstacles[i].transform.position.x - agentX), 2) + Mathf.Pow((obstacles[i].transform.position.z - agentZ), 2));
+            }
+            else
+            {
+                tempObstacleDistances[i] = maxDistance;
+            }
             //if(tempObstacleDistance < obstacleDistance)
             //{
             //    obstacleDistance = tempObstacleDistance;
@@ -215,12 +243,15 @@ public class PedestriansAgent : Agent
         float distance = Mathf.Sqrt(Mathf.Pow((goalX - agentX), 2) + Mathf.Pow((goalZ - agentZ), 2));
         //float obstacleDistance = Mathf.Sqrt(Mathf.Pow((obstacleX - agentX), 2) + Mathf.Pow((obstacleZ - agentZ), 2));
 
-        reward = calculateReward(distance, obstacleDistance);
+        reward = calculateReward(distance, obstacleDistance, obstacles.Length);
 
-        Monitor.Log("Reward", reward, MonitorType.slider, agent.transform);
-        Monitor.Log("Distance", distance/maxDistance, MonitorType.slider, agent.transform);
-        Monitor.Log("Obstacle Distance", obstacleDistance/3, MonitorType.slider, agent.transform);
-        Monitor.Log("State", state, MonitorType.text, agent.transform);
+        if (showMonitor)
+        {
+            Monitor.Log("Reward", reward, MonitorType.slider, agent.transform);
+            Monitor.Log("Distance", distance / maxDistance, MonitorType.slider, agent.transform);
+            Monitor.Log("Obstacle Distance", obstacleDistance / 3, MonitorType.slider, agent.transform);
+            Monitor.Log("State", state, MonitorType.text, agent.transform);
+        }
 
         if (trainingText != null)
         {
@@ -255,11 +286,10 @@ public class PedestriansAgent : Agent
 
         //obstacleX = UnityEngine.Random.Range(length/2, -length/2);
         //obstacleZ = UnityEngine.Random.Range(width, -width);
-
-        if (!AgentVsAgent)
+        
+        for (int i = 0; i < obstacles.Length; i++)
         {
-            for (int i = 0; i < obstacles.Length; i++)
-            {
+            if (obstacles[i].tag != "agent") {
                 obstacles[i].transform.position = new Vector3(
                     UnityEngine.Random.Range(directionX * length / 2, 0),//-length / 2),
                     0,
