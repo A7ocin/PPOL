@@ -7,6 +7,7 @@
 /unity-environment/[Uu]nity[Pp]ackage[Mm]anager/
 /unity-environment/Assets/AssetStoreTools*
 /unity-environment/Assets/OpenCVForUnity/
+/unity-environment/Acquisizione*
 
 # Tensorflow Model Info
 /python/models
